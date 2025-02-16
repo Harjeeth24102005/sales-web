@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJ Programmer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #141e30, #243b55);
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+            color: white;
+        }
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .project-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .project {
+            background: white;
+            margin: 15px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 300px;
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            color: black;
+        }
+        .project:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: white;
+            padding: 25px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.4);
+            z-index: 1000;
+            width: 90%;
+            max-width: 400px;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            opacity: 0;
+            border-radius: 15px;
+            color: black;
+        }
+        .popup.active {
+            display: block;
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+        .bold-text {
+            font-weight: bold;
+            color: red;
+        }
+        #custom-project-details {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>AJ Programming Project for Sales</header>
+    <div class="container">
+        <h2>Available Projects</h2>
+        <div class="project-list">
+            <div class="project">
+                <h3>Python Projects</h3>
+                <p>A collection of beginner to advanced Python projects.</p>
+                <button onclick="openPopup('Python')">Buy Now</button>
+            </div>
+            <div class="project">
+                <h3>Web Development</h3>
+                <p>Web development using HTML, CSS, and JavaScript.</p>
+                <button onclick="openPopup('Web Development')">Buy Now</button>
+            </div>
+            <div class="project">
+                <h3>Machine Learning</h3>
+                <p>Projects featuring AI and ML models with data analysis.</p>
+                <button onclick="openPopup('Machine Learning')">Buy Now</button>
+            </div>
+            <div class="project">
+                <h3>App Development (Kivy)</h3>
+                <p>Cross-platform mobile apps built using Kivy.</p>
+                <button onclick="openPopup('App Development (Kivy)')">Buy Now</button>
+            </div>
+        </div>
+        <div class="contact">
+            <h2>Contact Us</h2>
+            <p>Phone: 8248349844</p>
+        </div>
+    </div>
+    <div id="popup-overlay" class="popup-overlay" onclick="closePopup()"></div>
+    <div id="popup" class="popup">
+        <h2 id="popup-title">Purchase Project</h2>
+        <form id="purchase-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            
+            <label for="contact">Contact Number:</label>
+            <input type="text" id="contact" name="contact" required><br><br>
+            
+            <label for="project-type">Project Type:</label>
+            <select id="project-type" name="project-type" onchange="toggleCustomProject()">
+                <option value="Basic">Basic</option>
+                <option value="Advanced">Advanced</option>
+                <option value="Custom">Customize Your Project Details</option>
+            </select><br><br>
+            
+            <div id="custom-project-details">
+                <label for="custom-details">Project Details:</label>
+                <textarea id="custom-details" name="custom-details" rows="4"></textarea><br><br>
+            </div>
+            
+            <p class="bold-text">The QR code will be shared to your WhatsApp number after submitting the details.</p>
+            
+            <button type="button" onclick="submitForm()">Submit</button>
+            <button type="button" onclick="closePopup()">Close</button>
+        </form>
+        <p id="confirmation-message" class="bold-text" style="display: none;">The project would be sent to your WhatsApp number within 24 hours only if I receive the transaction details to my mobile number - 8248349844</p>
+    </div>
+    <script>
+        function openPopup(projectTitle) {
+            document.getElementById("popup-title").innerText = `Purchase ${projectTitle} Project`;
+            document.getElementById("popup").classList.add("active");
+            document.getElementById("popup-overlay").style.display = "block";
+        }
+        function closePopup() {
+            document.getElementById("popup").classList.remove("active");
+            document.getElementById("popup-overlay").style.display = "none";
+        }
+        function toggleCustomProject() {
+            let projectType = document.getElementById("project-type").value;
+            document.getElementById("custom-project-details").style.display = projectType === "Custom" ? "block" : "none";
+        }
+        function submitForm() {
+            let name = document.getElementById("name").value;
+            let contact = document.getElementById("contact").value;
+            let projectType = document.getElementById("project-type").value;
+            let customDetails = document.getElementById("custom-details").value;
+            let message = `Name: ${name}%0AContact: ${contact}%0AProject Type: ${projectType}%0ADetails: ${customDetails}`;
+            window.open(`https://api.whatsapp.com/send?phone=8248349844&text=${message}`, "_blank");
+        }
+    </script>
+</body>
+</html>

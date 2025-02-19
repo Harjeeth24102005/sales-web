@@ -4,165 +4,1015 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AJ Programmer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* Global Styles */
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(to right, #141e30, #243b55);
-            text-align: center;
-            animation: fadeIn 1s ease-in;
-            color: white;
+            box-sizing: border-box;
         }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #1f1c2c, #928dab, #2c3e50, #34495e);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Header */
         header {
             background: rgba(0, 0, 0, 0.9);
-            color: white;
-            padding: 15px;
-            font-size: 24px;
+            width: 100%;
+            padding: 15px 20px;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            color: #ffcc00;
         }
-        .container {
-            width: 90%;
-            margin: auto;
-            overflow: hidden;
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
+
+        nav a:hover {
+            color: #ff6f61;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: slideUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: slideUp 1.2s ease-out;
+        }
+
+        .hero button {
+            background: linear-gradient(135deg, #ff6f61, #ffcc00);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        .hero button:hover {
+            background: linear-gradient(135deg, #ffcc00, #ff6f61);
+            transform: scale(1.05);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .about.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #ddd;
+        }
+
+        .about .project-details {
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .about .project-details h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #ffcc00;
+        }
+
+        .about .project-details p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .about .workshop-info {
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .about .workshop-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #ffcc00;
+        }
+
+        .about .workshop-info p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .about .buttons {
+            margin-top: 40px;
+        }
+
+        .about .buttons button {
+            background: linear-gradient(135deg, #ff6f61, #ffcc00);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .about .buttons button:hover {
+            background: linear-gradient(135deg, #ffcc00, #ff6f61);
+            transform: scale(1.05);
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 80px 20px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .projects.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .projects h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #ffcc00;
+        }
+
         .project-list {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            gap: 20px;
         }
+
         .project {
-            background: white;
-            margin: 15px;
-            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            padding: 20px;
             width: 100%;
             max-width: 300px;
-            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
-            position: relative;
-            overflow: hidden;
-            color: black;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
+
+        .project.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .project:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
+
+        .project h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #ffcc00;
+        }
+
+        .project p {
+            font-size: 1rem;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .project button {
+            background: linear-gradient(135deg, #ff6f61, #ffcc00);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .project button:hover {
+            background: linear-gradient(135deg, #ffcc00, #ff6f61);
+            transform: scale(1.05);
+        }
+
+        /* Workshops Section */
+        .workshops {
+            padding: 80px 20px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .workshops.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .workshops h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #ffcc00;
+        }
+
+        .workshop-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .workshop {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .workshop.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .workshop:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .workshop h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #ffcc00;
+        }
+
+        .workshop p {
+            font-size: 1rem;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .workshop button {
+            background: linear-gradient(135deg, #ff6f61, #ffcc00);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .workshop button:hover {
+            background: linear-gradient(135deg, #ffcc00, #ff6f61);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ff6f61;
+        }
+
+        /* Popup Styles */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+        }
+
         .popup {
             display: none;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0.8);
-            background: white;
-            padding: 25px;
-            box-shadow: 0 0 25px rgba(0,0,0,0.4);
-            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             width: 90%;
             max-width: 400px;
-            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 80vh;
+            overflow-y: auto;
+            text-align: center;
+            color: #333;
+            transition: transform 0.3s ease, opacity 0.3s ease;
             opacity: 0;
-            border-radius: 15px;
-            color: black;
+            z-index: 1001;
         }
+
         .popup.active {
             display: block;
             transform: translate(-50%, -50%) scale(1);
             opacity: 1;
         }
-        .bold-text {
-            font-weight: bold;
-            color: red;
+
+        .popup h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #ff6f61;
         }
-        #custom-project-details {
+
+        .popup label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .popup input,
+        .popup select,
+        .popup textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .popup button {
+            background: linear-gradient(135deg, #ff6f61, #ffcc00);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .popup button:hover {
+            background: linear-gradient(135deg, #ffcc00, #ff6f61);
+            transform: scale(1.05);
+        }
+
+        .bold-text {
+            font-weight: 600;
+            color: #ff6f61;
+        }
+
+        /* Chatbot Styles */
+        .chatbot-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .chatbot-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+        }
+
+        .chat-container {
+            width: 400px;
+            height: 500px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
             display: none;
+            flex-direction: column;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #chatbox {
+            flex-grow: 1;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            height: 350px;
+        }
+
+        .message-container {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn 0.5s ease-in forwards, slideUp 0.5s ease-out forwards;
+        }
+
+        .user-container {
+            justify-content: flex-end;
+        }
+
+        .user {
+            background: #007bff;
+            color: white;
+            text-align: right;
+        }
+
+        .user-icon {
+            margin-left: 10px;
+            font-size: 20px;
+            background: #007bff;
+            color: white;
+            padding: 8px;
+            border-radius: 50%;
+        }
+
+        .bot-container {
+            justify-content: flex-start;
+        }
+
+        .bot {
+            background: #f1f1f1;
+            color: #333;
+            text-align: left;
+        }
+
+        .bot-icon {
+            margin-right: 10px;
+            font-size: 20px;
+            background: #4caf50;
+            color: white;
+            padding: 8px;
+            border-radius: 50%;
+        }
+
+        .typing {
+            background: #f1f1f1;
+            color: #555;
+            padding: 8px 12px;
+            border-radius: 10px;
+            text-align: left;
+            align-self: flex-start;
+            display: flex;
+            align-items: center;
+            animation: bounce 1s infinite ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .input-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #0056b3;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-left: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .mic-button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .mic-button:hover {
+            background-color: #388e3c;
         }
     </style>
 </head>
 <body>
-    <header>AJ Programming Project for Sales</header>
-    <div class="container">
-        <h2>Available Projects</h2>
+    <!-- Header -->
+    <header>
+        <h1>AJ Programmer</h1>
+        <nav>
+            <a href="#hero">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#workshops">Workshops</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <h2>Welcome to AJ Programmer</h2>
+        <p>Your one-stop solution for innovative programming projects at <span class="bold-text">affordable prices</span>. We provide high-quality projects at prices lower than the market rate, ensuring you get the best value for your investment.</p>
+        <button onclick="scrollToAbout()">Get Started</button>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>About Us</h2>
+        <p>Welcome to <span class="bold-text">AJ Programmer</span>, your trusted partner for affordable and high-quality programming projects. We specialize in creating cutting-edge projects in Python, web development, machine learning, app development, and more. Our mission is to provide students and professionals with cost-effective solutions that help them achieve their goals without breaking the bank. With a focus on quality and affordability, we ensure that every project is delivered with excellence and at a price that is significantly lower than other companies in the market.</p>
+
+        <div class="project-details">
+            <h3>Python Projects</h3>
+            <p>Our Python projects range from beginner-friendly scripts to advanced applications, including data analysis, automation, and web scraping.</p>
+
+            <h3>Web Development</h3>
+            <p>We offer projects in HTML, CSS, JavaScript, and modern frameworks like React and Node.js to help you build responsive and dynamic websites.</p>
+
+            <h3>Machine Learning</h3>
+            <p>Explore AI and ML projects, including predictive models, natural language processing, and computer vision applications.</p>
+
+            <h3>App Development (Kivy)</h3>
+            <p>Build cross-platform mobile apps using Kivy, a Python framework for developing multitouch applications.</p>
+
+            <h3>OpenCV Projects</h3>
+            <p>Dive into computer vision projects with OpenCV, including image processing, object detection, and facial recognition.</p>
+        </div>
+
+        <div class="workshop-info">
+            <h3>Workshops</h3>
+            <p>We also offer <span class="bold-text">one-hour certified workshops</span> on various topics, including Python, OpenCV, Web Development, and App Development using Kivy. These workshops are designed to provide hands-on experience and a certificate of completion from our company.</p>
+        </div>
+
+        <div class="buttons">
+            <button onclick="scrollToProjects()">View Projects</button>
+            <button onclick="scrollToWorkshops()">View Workshops</button>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <h2>Our Projects</h2>
         <div class="project-list">
             <div class="project">
                 <h3>Python Projects</h3>
                 <p>A collection of beginner to advanced Python projects.</p>
-                <button onclick="openPopup('Python')">Buy Now</button>
+                <button onclick="openProjectPopup('Python')">Get Now</button>
             </div>
             <div class="project">
                 <h3>Web Development</h3>
                 <p>Web development using HTML, CSS, and JavaScript.</p>
-                <button onclick="openPopup('Web Development')">Buy Now</button>
+                <button onclick="openProjectPopup('Web Development')">Get Now</button>
             </div>
             <div class="project">
                 <h3>Machine Learning</h3>
                 <p>Projects featuring AI and ML models with data analysis.</p>
-                <button onclick="openPopup('Machine Learning')">Buy Now</button>
+                <button onclick="openProjectPopup('Machine Learning')">Get Now</button>
             </div>
             <div class="project">
                 <h3>App Development (Kivy)</h3>
                 <p>Cross-platform mobile apps built using Kivy.</p>
-                <button onclick="openPopup('App Development (Kivy)')">Buy Now</button>
+                <button onclick="openProjectPopup('App Development (Kivy)')">Get Now</button>
+            </div>
+            <div class="project">
+                <h3>OpenCV Projects</h3>
+                <p>Projects involving computer vision and image processing using OpenCV.</p>
+                <button onclick="openProjectPopup('OpenCV')">Get Now</button>
             </div>
         </div>
-        <div class="contact">
-            <h2>Contact Us</h2>
-            <p>Phone: 8248349844</p>
+    </section>
+
+    <!-- Workshops Section -->
+    <section id="workshops" class="workshops">
+        <h2>Our Workshops</h2>
+        <div class="workshop-list">
+            <div class="workshop">
+                <h3>Python Workshop</h3>
+                <p>A one-hour certified workshop covering Python basics and advanced concepts.</p>
+                <button onclick="openWorkshopPopup('Python Workshop')">Enroll Now</button>
+            </div>
+            <div class="workshop">
+                <h3>OpenCV Workshop</h3>
+                <p>Learn computer vision and image processing with OpenCV in this one-hour workshop.</p>
+                <button onclick="openWorkshopPopup('OpenCV Workshop')">Enroll Now</button>
+            </div>
+            <div class="workshop">
+                <h3>Web Development Workshop</h3>
+                <p>Build responsive websites using HTML, CSS, and JavaScript in this one-hour workshop.</p>
+                <button onclick="openWorkshopPopup('Web Development Workshop')">Enroll Now</button>
+            </div>
+            <div class="workshop">
+                <h3>App Development (Kivy) Workshop</h3>
+                <p>Develop cross-platform mobile apps using Kivy in this one-hour workshop.</p>
+                <button onclick="openWorkshopPopup('App Development (Kivy) Workshop')">Enroll Now</button>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Contact us at <a href="tel:8248349844">8248349844</a> | &copy; 2023 AJ Programmer</p>
+    </footer>
+
+    <!-- Popup Overlay -->
     <div id="popup-overlay" class="popup-overlay" onclick="closePopup()"></div>
-    <div id="popup" class="popup">
+
+    <!-- Project Popup -->
+    <div id="project-popup" class="popup">
         <h2 id="popup-title">Purchase Project</h2>
-        <form id="purchase-form">
+        <form id="project-form">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br><br>
             
-            <label for="contact">Contact Number:</label>
-            <input type="text" id="contact" name="contact" required><br><br>
+            <label for="whatsapp">WhatsApp Number:</label>
+            <input type="text" id="whatsapp" name="whatsapp" required><br><br>
             
-            <label for="project-type">Project Type:</label>
-            <select id="project-type" name="project-type" onchange="toggleCustomProject()">
-                <option value="Basic">Basic</option>
+            <label for="project-level">Project Level:</label>
+            <select id="project-level" name="project-level" onchange="toggleCustomDetails()">
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
                 <option value="Advanced">Advanced</option>
-                <option value="Custom">Customize Your Project Details</option>
+                <option value="Custom">Customize Your Project</option>
             </select><br><br>
             
-            <div id="custom-project-details">
-                <label for="custom-details">Project Details:</label>
-                <textarea id="custom-details" name="custom-details" rows="4"></textarea><br><br>
+            <div id="custom-details" style="display: none;">
+                <label for="custom-project-details">Project Details:</label>
+                <textarea id="custom-project-details" name="custom-project-details" rows="4"></textarea><br><br>
             </div>
             
-            <p class="bold-text">The QR code will be shared to your WhatsApp number after submitting the details.</p>
+            <p class="bold-text">The details of the project and the mode of transaction will be shared to your WhatsApp number soon.</p>
             
-            <button type="button" onclick="submitForm()">Submit</button>
+            <button type="button" onclick="submitProjectForm()">Submit</button>
             <button type="button" onclick="closePopup()">Close</button>
         </form>
-        <p id="confirmation-message" class="bold-text" style="display: none;">The project would be sent to your WhatsApp number within 24 hours only if I receive the transaction details to my mobile number - 8248349844</p>
     </div>
+
+    <!-- Workshop Popup -->
+    <div id="workshop-popup" class="popup">
+        <h2 id="workshop-popup-title">Enroll in Workshop</h2>
+        <form id="workshop-form">
+            <label for="workshop-name">Name with Initial:</label>
+            <input type="text" id="workshop-name" name="workshop-name" required><br><br>
+            
+            <label for="workshop-whatsapp">WhatsApp Number:</label>
+            <input type="text" id="workshop-whatsapp" name="workshop-whatsapp" required><br><br>
+            
+            <p class="bold-text">The details of the workshop and the mode of transaction will be shared to your WhatsApp number soon.</p>
+            
+            <button type="button" onclick="submitWorkshopForm()">Submit</button>
+            <button type="button" onclick="closePopup()">Close</button>
+        </form>
+    </div>
+
+    <!-- Chatbot -->
+    <button class="chatbot-button" onclick="toggleChatbot()"><i class="fas fa-comments"></i></button>
+    <div class="chat-container" id="chat-container">
+        <h2 style="text-align: center; margin: 0; font-size: 20px;">AI Chatbot</h2>
+        <div id="chatbox"></div>
+        <div class="input-container">
+            <input type="text" id="userInput" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()"><i class="fas fa-arrow-up"></i></button>
+            <button class="mic-button" onclick="startListening()"><i class="fas fa-microphone"></i></button>
+        </div>
+    </div>
+
     <script>
-        function openPopup(projectTitle) {
-            document.getElementById("popup-title").innerText = `Purchase ${projectTitle} Project`;
-            document.getElementById("popup").classList.add("active");
+        // Scroll Functions
+        function scrollToAbout() {
+            document.getElementById("about").scrollIntoView({ behavior: "smooth" });
+        }
+
+        function scrollToProjects() {
+            document.getElementById("projects").scrollIntoView({ behavior: "smooth" });
+        }
+
+        function scrollToWorkshops() {
+            document.getElementById("workshops").scrollIntoView({ behavior: "smooth" });
+        }
+
+        // Popup Functions
+        let selectedProject = "";
+        let selectedWorkshop = "";
+
+        function openProjectPopup(projectTitle) {
+            selectedProject = projectTitle;
+            document.getElementById("popup-title").innerText = `Purchase ${projectTitle}`;
+            document.getElementById("project-popup").classList.add("active");
             document.getElementById("popup-overlay").style.display = "block";
         }
+
+        function openWorkshopPopup(workshopTitle) {
+            selectedWorkshop = workshopTitle;
+            document.getElementById("workshop-popup-title").innerText = `Enroll in ${workshopTitle}`;
+            document.getElementById("workshop-popup").classList.add("active");
+            document.getElementById("popup-overlay").style.display = "block";
+        }
+
         function closePopup() {
-            document.getElementById("popup").classList.remove("active");
+            document.getElementById("project-popup").classList.remove("active");
+            document.getElementById("workshop-popup").classList.remove("active");
             document.getElementById("popup-overlay").style.display = "none";
         }
-        function toggleCustomProject() {
-            let projectType = document.getElementById("project-type").value;
-            document.getElementById("custom-project-details").style.display = projectType === "Custom" ? "block" : "none";
+
+        function toggleCustomDetails() {
+            let projectLevel = document.getElementById("project-level").value;
+            document.getElementById("custom-details").style.display = projectLevel === "Custom" ? "block" : "none";
         }
-        function submitForm() {
+
+        function submitProjectForm() {
             let name = document.getElementById("name").value;
-            let contact = document.getElementById("contact").value;
-            let projectType = document.getElementById("project-type").value;
-            let customDetails = document.getElementById("custom-details").value;
-            let message = `Name: ${name}%0AContact: ${contact}%0AProject Type: ${projectType}%0ADetails: ${customDetails}`;
+            let whatsapp = document.getElementById("whatsapp").value;
+            let projectLevel = document.getElementById("project-level").value;
+            let customDetails = document.getElementById("custom-project-details").value;
+
+            let message = `Name: ${name}%0AWhatsApp: ${whatsapp}%0AProject: ${selectedProject}%0AProject Level: ${projectLevel}%0ADetails: ${customDetails}`;
             window.open(`https://api.whatsapp.com/send?phone=8248349844&text=${message}`, "_blank");
+
+            closePopup();
         }
+
+        function submitWorkshopForm() {
+            let name = document.getElementById("workshop-name").value;
+            let whatsapp = document.getElementById("workshop-whatsapp").value;
+
+            let message = `Name: ${name}%0AWhatsApp: ${whatsapp}%0AWorkshop: ${selectedWorkshop}`;
+            window.open(`https://api.whatsapp.com/send?phone=8248349844&text=${message}`, "_blank");
+
+            closePopup();
+        }
+
+        // Chatbot Functions
+        function toggleChatbot() {
+            let chatbot = document.getElementById("chat-container");
+            chatbot.style.display = chatbot.style.display === "none" || chatbot.style.display === "" ? "flex" : "none";
+        }
+
+        const responses = {
+            "hello": "Hi there! How can I help you?",
+            "hi": "Hi there! How can I help you?",
+            "how are you": "I'm just a chatbot, but I'm doing great! How about you?",
+            "what is your name": "I am your Aj chat assistant!",
+            "bye": "Goodbye! Have a great day!",
+            "thanks": "You're welcome!",
+            "projects": "We offer Python, Web Development, Machine Learning, App Development (Kivy), and OpenCV projects.",
+            "workshops": "We offer one-hour certified workshops on Python, OpenCV, Web Development, and App Development (Kivy).",
+            "contact": "You can contact us at 8248349844 or via email at harjeethhari5@gmail.com.",
+            "about": "AJ Programmer specializes in affordable and high-quality programming projects in Python, web development, machine learning, app development, and more.",
+            "python project": "We offer beginner to advanced Python projects, including data analysis, automation, and web scraping.",
+            "web development project": "Our web development projects include HTML, CSS, JavaScript, and modern frameworks like React and Node.js.",
+            "machine learning project": "Explore AI and ML projects, including predictive models, natural language processing, and computer vision applications.",
+            "app development project": "Build cross-platform mobile apps using Kivy, a Python framework for developing multitouch applications.",
+            "opencv project": "Dive into computer vision projects with OpenCV, including image processing, object detection, and facial recognition.",
+            "python workshop": "A one-hour certified workshop covering Python basics and advanced concepts.",
+            "opencv workshop": "Learn computer vision and image processing with OpenCV in this one-hour workshop.",
+            "web development workshop": "Build responsive websites using HTML, CSS, and JavaScript in this one-hour workshop.",
+            "app development workshop": "Develop cross-platform mobile apps using Kivy in this one-hour workshop.",
+            "default": "I'm not sure how to respond to that. Can you try asking something else?"
+        };
+
+        function getResponse(text) {
+            text = text.toLowerCase().trim();
+            for (let key in responses) {
+                if (text.includes(key)) {
+                    return responses[key];
+                }
+            }
+            return responses["default"];
+        }
+
+        function sendMessage() {
+            let inputField = document.getElementById("userInput");
+            let userText = inputField.value.trim();
+            if (!userText) return;
+
+            let chatbox = document.getElementById("chatbox");
+
+            // User Message
+            let userContainer = document.createElement("div");
+            userContainer.className = "message-container user-container";
+            userContainer.innerHTML = `<div class="message user">${userText}</div> <i class="fas fa-user user-icon"></i>`;
+            chatbox.appendChild(userContainer);
+
+            inputField.value = "";
+            chatbox.scrollTop = chatbox.scrollHeight;
+
+            // Typing Indicator
+            let botTyping = document.createElement('div');
+            botTyping.className = "typing";
+            botTyping.innerHTML = "<i>Typing...</i>";
+            chatbox.appendChild(botTyping);
+            chatbox.scrollTop = chatbox.scrollHeight;
+
+            setTimeout(() => {
+                botTyping.remove();
+                typeMessage(getResponse(userText));
+            }, 1500);
+        }
+
+        function typeMessage(message) {
+            let chatbox = document.getElementById("chatbox");
+            let botContainer = document.createElement("div");
+            botContainer.className = "message-container bot-container";
+            botContainer.innerHTML = `<i class="fas fa-robot bot-icon"></i> <div class="message bot"></div>`;
+            chatbox.appendChild(botContainer);
+
+            let botMessage = botContainer.querySelector(".message.bot");
+            let i = 0;
+            function typeLetter() {
+                if (i < message.length) {
+                    botMessage.innerHTML += message.charAt(i);
+                    i++;
+                    setTimeout(typeLetter, 50);
+                }
+            }
+            typeLetter();
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") sendMessage();
+        }
+
+        // Speech Recognition
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.continuous = false;
+        recognition.lang = 'en-US';
+
+        recognition.onstart = function() {
+            console.log("Listening...");
+        };
+
+        recognition.onresult = function(event) {
+            const transcript = event.results[0][0].transcript;
+            document.getElementById("userInput").value = transcript;
+            sendMessage();
+        };
+
+        recognition.onerror = function(event) {
+            console.log("Speech recognition error: ", event.error);
+        };
+
+        function startListening() {
+            recognition.start();
+        }
+
+        // Scroll-triggered animations
+        const sections = document.querySelectorAll('.about, .projects, .workshops');
+        const projects = document.querySelectorAll('.project, .workshop');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach((section) => observer.observe(section));
+        projects.forEach((project) => observer.observe(project));
     </script>
 </body>
 </html>
